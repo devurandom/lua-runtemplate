@@ -1,0 +1,14 @@
+example:
+  value: 1
+  additional: much more
+  file: |
+    Multi
+    Line
+    File
+
+  template: |
+    Template
+    With
+    much more
+    Value
+

@@ -1,0 +1,7 @@
+example:
+  value: $<example.value>
+  additional: $<additional>
+  file: |
+    $<include("test-01.file", "    ")>
+  template: |
+    $<template("test-01.template", "    ", _ENV)>
