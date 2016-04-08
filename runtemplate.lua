@@ -97,7 +97,7 @@ Parse file as a template, reading template parameters from another file
 	local config = assert(dofile(args.config_name))
 
 	if config._preprocess then
-		config = config:_preprocess(args)
+		config = config:_preprocess(args, extra_env)
 	end
 
 	local env = copy(template_config)
