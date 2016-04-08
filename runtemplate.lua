@@ -105,10 +105,6 @@ Parse file as a template, reading template parameters from another file
 		-- functions
 		include = include,
 		template = include_template,
-		pairs = pairs,
-		ipairs = ipairs,
-		string = string,
-		union = union,
 		-- internal info
 		_filename = args.template_name,
 	})
