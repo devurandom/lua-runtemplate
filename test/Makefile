@@ -1,11 +1,12 @@
 DIFF:=diff -u
+TESTS:=$(subst .cfg,,$(wildcard test*.cfg))
 
-all: $(subst .cfg,,$(wildcard test-*))
+test01_ARGS:="much more"
+test02_ARGS:=orange
 
-test-01:
-	../runtemplate.lua $@.cfg $@.yaml -- "much more" | $(DIFF) $@.output - && echo "$@: OK" || echo "$@: FAIL"
+all: $(TESTS)
 
-test-02:
-	../runtemplate.lua $@.cfg $@.yaml -- orange | $(DIFF) $@.output - && echo "$@: OK" || echo "$@: FAIL"
+$(TESTS):
+	../runtemplate.lua $@.cfg $@.yaml -- $($@_ARGS) | $(DIFF) $@.output - && echo "$@: OK" || echo "$@: FAIL"
 
-.PHONY: test-01
+.PHONY: all $(TESTS)
