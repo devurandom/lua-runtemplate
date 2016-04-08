@@ -18,6 +18,7 @@ local lapp = require "pl.lapp"
 local lfs = require "lfs"
 local union = require "tablexx".union
 local unpack = require "table".unpack
+local remove = require "table".remove
 
 local template_config = {
 	_escape = ">",
@@ -70,7 +71,7 @@ local function include_template(template_filename, indent, env)
 	return include(file, indent)
 end
 
-local function runtemplate(script_filename, ...)
+local function runtemplate(script_filename, extra_env, ...)
 	local args = lapp(assert(tsub([[
 Parse file as a template, reading template parameters from another file
 	<config> (file-in default $<script_filename:gsub(".lua$", ".cfg")>) Configuration file
@@ -110,6 +111,7 @@ Parse file as a template, reading template parameters from another file
 		-- internal info
 		_filename = args.template_name,
 	})
+	env = union(env, extra_env)
 	env = union(env, config)
 
 	local template_file = args.template
@@ -124,4 +126,15 @@ Parse file as a template, reading template parameters from another file
 end
 
 local script_filename = arg[0]
-runtemplate(script_filename, unpack(arg))
+
+local env = {}
+local args = copy(arg)
+for i,a in ipairs(arg) do
+	local k, v = a:match("^([^=]*)=([^=]*)$")
+	if k and v then
+		env[k] = v
+		remove(args, i)
+	end
+end
+
+runtemplate(script_filename, env, unpack(args))

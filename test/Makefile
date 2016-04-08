@@ -3,6 +3,7 @@ TESTS:=$(subst .cfg,,$(wildcard test*.cfg))
 
 test01_ARGS:="much more"
 test02_ARGS:=orange
+test03_ARGS:=cn=common-name
 
 all: $(TESTS)
 
