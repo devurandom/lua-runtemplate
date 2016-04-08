@@ -1,4 +1,6 @@
 DIFF:=diff -u
+RUNTEMPLATE:=../runtemplate.lua
+
 TESTS:=$(subst .cfg,,$(wildcard test*.cfg))
 
 test01_ARGS:="much more"
@@ -8,6 +10,6 @@ test03_ARGS:=cn=common-name
 all: $(TESTS)
 
 $(TESTS):
-	../runtemplate.lua $@.cfg $@.yaml -- $($@_ARGS) | $(DIFF) $@.output - && echo "$@: OK" || echo "$@: FAIL"
+	$(RUNTEMPLATE) $@.cfg $@.yaml -- $($@_ARGS) | $(DIFF) $@.output - && echo "$@: OK" || echo "$@: FAIL"
 
 .PHONY: all $(TESTS)
