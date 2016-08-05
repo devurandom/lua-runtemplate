@@ -15,7 +15,6 @@ local tsub = require "pl.template".substitute
 local copy = require "pl.tablex".copy
 local stropen = require "pl.stringio".open
 local lapp = require "pl.lapp"
-local lfs = require "lfs"
 local union = require "tablexx".union
 local unpack = require "table".unpack
 local remove = require "table".remove
@@ -38,7 +37,7 @@ local function include(file, indent)
 	local lines = file:lines()
 
 	local text = ""
-	line_number = 1
+	local line_number = 1
 	for line in lines do
 		if line_number == 1 then
 			text = text .. line .. "\n"
@@ -61,7 +60,7 @@ local function include_template(template_filename, indent, env)
 		indent = nil
 	end
 
-	local env = copy(env)
+	env = copy(env)
 	env = union(env, template_config)
 	env = union(env, {_filename = template_filename})
 
