@@ -20,9 +20,9 @@ local unpack = require "table".unpack
 local remove = require "table".remove
 
 local template_config = {
-	_escape = ">",
-	_inline_escape = "$",
-	_brackets = "<>",
+	_escape = "#@",
+	_inline_escape = "@",
+	_brackets = "{}",
 }
 
 local function include(file, indent)

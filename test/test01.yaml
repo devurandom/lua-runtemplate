@@ -1,7 +1,7 @@
 example:
-  value: $<example.value>
-  additional: $<additional>
+  value: @{example.value}
+  additional: @{additional}
   file: |
-    $<include("test01.file", "    ")>
+    @{include("test01.file", "    ")}
   template: |
-    $<template("test01.template", "    ", _ENV)>
+    @{template("test01.template", "    ", _ENV)}

@@ -1,3 +1,3 @@
-> _ENV = union(_ENV, hosts[hostname])
+#@ _ENV = union(_ENV, hosts[hostname])
 some-service:
-  ip: $<ip>
+  ip: @{ip}

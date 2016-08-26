@@ -18,7 +18,7 @@ Defaults to: Name of the script (`arg[0]`) with `.lua` replaced with `.cfg`.
 
 ### Template filename
 
-The template file to instantiate. Unlike the default Penlight configuration, we use `$<...>` to mark inline code and `> ...` to mark code lines.
+The template file to instantiate. Unlike the default Penlight configuration, we use `@{...}` to mark inline code and `#@ ...` to mark code lines.
 
 Defaults to: stdin
 
@@ -64,12 +64,12 @@ return {
 
 ```yaml
 example:
-  value: $<example.value>
-  additional: $<additional>
+  value: @{example.value}
+  additional: @{additional}
   file: |
-    $<include("example.file", "    ")>
+    @{include("example.file", "    ")}
   template: |
-    $<template("example.template", "    ", _ENV)>
+    @{template("example.template", "    ", _ENV)}
 ```
 
 ### Include file (`example.file`)
@@ -85,7 +85,7 @@ File
 ```
 Template
 With
-$<additional>
+@{additional}
 Value
 ```
 
@@ -141,7 +141,7 @@ return {
 
 ```yaml
 some-service:
-  hostfile: $<hostname>.cfg
+  hostfile: @{hostname}.cfg
 ```
 
 ### Command line and output
