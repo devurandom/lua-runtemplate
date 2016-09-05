@@ -62,7 +62,7 @@ local function include_template(template_filename, indent, env)
 
 	env = copy(env)
 	env = union(env, template_config)
-	env = union(env, {_filename = template_filename})
+	env = union(env, {_chunk_name = "@" .. template_filename})
 
 	local text = assert(tsub(template, env))
 	local file = assert(stropen(text))
@@ -105,7 +105,7 @@ Parse file as a template, reading template parameters from another file
 		include = include,
 		template = include_template,
 		-- internal info
-		_filename = args.template_name,
+		_chunk_name = "@" .. args.template_name,
 	})
 	env = union(env, extra_env)
 	env = union(env, config)
