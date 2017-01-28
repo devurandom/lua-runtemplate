@@ -12,7 +12,7 @@ All arguments are optional, providing sensible defaults.
 
 ### Config filename
 
-The file `config filename` is executed as a Lua script and is expected to return a template that is used as the environment within the template.
+The file `config filename` is executed as a Lua script and is expected to return a table that is used as the environment within the template.
 
 Defaults to: Name of the script (`arg[0]`) with `.lua` replaced with `.cfg`.
 
