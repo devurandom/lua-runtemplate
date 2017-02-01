@@ -73,7 +73,7 @@ end
 local function runtemplate(script_filename, extra_env, ...)
 	local args = lapp(assert(tsub([[
 Parse file as a template, reading template parameters from another file
-	<config> (file-in default $<script_filename:gsub(".lua$", ".cfg")>) Configuration file
+	<config> (file-in default @{script_filename:gsub(".lua$", ".cfg")}) Configuration file
 	<template> (file-in default stdin) Template file
 	<output> (file-out default stdout) Output file
 ]], union(template_config, {script_filename = script_filename}))), {...})
